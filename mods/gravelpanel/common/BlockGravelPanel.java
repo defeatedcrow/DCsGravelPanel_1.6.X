@@ -61,7 +61,7 @@ public class BlockGravelPanel extends Block{
 	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
     {
         int meta = world.getBlockMetadata(x, y, z);
-        return ((meta & 1) == 0) ? false : ((side == UP || side == DOWN) ? true : false);
+        return ((meta & 4) == 0) ? false : ((side == UP || side == DOWN) ? true : false);
     }
 	
 	@Override
@@ -138,5 +138,13 @@ public class BlockGravelPanel extends Block{
     	else if (i == 2){ return Block.dirt.getBlockTextureFromSide(1);}
     	else { return Block.snow.getBlockTextureFromSide(1);}
     }
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister par1IconRegister)
+	{
+		this.blockIcon = Block.gravel.getBlockTextureFromSide(1);
+		
+	}
 
 }
